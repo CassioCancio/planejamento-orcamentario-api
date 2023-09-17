@@ -2,12 +2,13 @@ package br.com.mac0472.planejamentoorcamentario;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
-@SpringBootApplication
-public class PlanejamentorcamentarioApplication {
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class}) // test local without authenticating
+public class PlanejamentoOrcamentarioApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PlanejamentoorcamentarioApplication.class, args);
+		SpringApplication.run(PlanejamentoOrcamentarioApplication.class, args);
 	}
 
 }
