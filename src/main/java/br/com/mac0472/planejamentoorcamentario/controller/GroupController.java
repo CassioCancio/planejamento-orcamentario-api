@@ -19,7 +19,7 @@ public class GroupController {
 		this.repository = repository;
 	}
 
-	@GetMapping("/getAll")
+	@GetMapping()
 	public List<Group>  getAllGroups() {
 		return repository.findAll();
 	}
