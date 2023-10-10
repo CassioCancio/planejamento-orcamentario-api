@@ -1,6 +1,5 @@
 package br.com.mac0472.planejamentoorcamentario.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,14 +11,11 @@ import jakarta.persistence.Table;
 public class Group {
 
 	@Id
-	@Column(updatable=false)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(unique=true, nullable=false)
 	private String name;
 	
-	@Column(nullable=false)
 	private Long number;
 
 	// Constructors

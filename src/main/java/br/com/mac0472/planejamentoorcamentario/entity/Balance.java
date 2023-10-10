@@ -2,7 +2,6 @@ package br.com.mac0472.planejamentoorcamentario.entity;
 
 import java.time.Instant;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,17 +13,13 @@ import jakarta.persistence.Table;
 public class Balance {
 	
 	@Id
-	@Column(updatable=false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(nullable=false)
 	private Instant startDate;
 	
-	@Column(nullable=false)
 	private Instant endDate;
 	
-	@Column(nullable=false, unique = true)
 	private Long year;
 
 	// Constructors

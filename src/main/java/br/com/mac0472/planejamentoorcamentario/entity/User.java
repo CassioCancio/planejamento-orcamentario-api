@@ -8,18 +8,15 @@ import java.util.Objects;
 @Table(name = "users", schema = "planejamento_orcamentario")
 public class User {
     @Id
-    @Column(updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
     private Integer nusp;
 
     @ManyToOne
-    @JoinColumn(name = "profileId")
+    @JoinColumn(name = "profile_id")
     private Profile profile;
 
     // Constructors

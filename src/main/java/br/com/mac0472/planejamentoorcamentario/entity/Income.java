@@ -2,7 +2,6 @@ package br.com.mac0472.planejamentoorcamentario.entity;
 
 import java.time.Instant;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,35 +15,29 @@ import jakarta.persistence.Table;
 public class Income {
 	
 	@Id
-	@Column(updatable=false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(nullable=false)
 	private String description;
 	
-	@Column(nullable=false)
 	private Long value;
 
-	@Column(nullable=false)
 	private Instant creationDate;
 
-	@Column(nullable=false)
 	private Instant incomeDate;
 
-	@Column(nullable=false)
 	private String process;
 
 	@ManyToOne
-	@JoinColumn(name = "groupId")
+	@JoinColumn(name = "group_id")
 	private Group group;
 
 	@ManyToOne
-	@JoinColumn(name = "balanceId")
+	@JoinColumn(name = "balance_id")
 	private Balance balance;
 	
 	@ManyToOne
-	@JoinColumn(name = "unitId")
+	@JoinColumn(name = "unit_id")
 	private Unit unit;
 
 	// Constructors

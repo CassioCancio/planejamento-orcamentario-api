@@ -11,7 +11,7 @@ import br.com.mac0472.planejamentoorcamentario.entity.Income;
 import br.com.mac0472.planejamentoorcamentario.repository.IncomeRepository;
 
 @RestController
-@RequestMapping("/Income")
+@RequestMapping("/income")
 public class IncomeController {
 	
 	@Autowired
