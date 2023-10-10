@@ -1,6 +1,6 @@
-create table units (
+create table balances (
 	"id" serial primary key,
-	"startDate" timestamp not null,
-	"endDate" timestamp not null,
+	"start_date" timestamp not null,
+	"end_date" timestamp not null,
 	"year" bigint not null
 );
