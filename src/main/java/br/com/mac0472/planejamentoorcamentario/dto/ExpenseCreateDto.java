@@ -1,7 +1,5 @@
 package br.com.mac0472.planejamentoorcamentario.dto;
 
-import java.time.Instant;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -15,7 +13,7 @@ public class ExpenseCreateDto {
 	
 	private Float requestedValue;
 	
-	private Instant expectedPaymentDate;
+	private String expectedPaymentDate;
 	
 	private String requester;
 	
@@ -23,7 +21,9 @@ public class ExpenseCreateDto {
 	
 	private Long categoryId;
 	
-	private Long declarantId;
+	private String declarantUser;
+	
+	private Long balanceId;
 	
 	// Constructors
 	
@@ -57,11 +57,11 @@ public class ExpenseCreateDto {
 		this.requestedValue = requestedValue;
 	}
 
-	public Instant getExpectedPaymentDate() {
+	public String getExpectedPaymentDate() {
 		return expectedPaymentDate;
 	}
 
-	public void setExpectedPaymentDate(Instant expectedPaymentDate) {
+	public void setExpectedPaymentDate(String expectedPaymentDate) {
 		this.expectedPaymentDate = expectedPaymentDate;
 	}
 
@@ -89,12 +89,19 @@ public class ExpenseCreateDto {
 		this.categoryId = category;
 	}
 
-	public Long getDeclarantId() {
-		return declarantId;
+	public String getDeclarantUser() {
+		return declarantUser;
 	}
 
-	public void setDeclarantId(Long declarant) {
-		this.declarantId = declarant;
+	public void setDeclarantUser(String declarant) {
+		this.declarantUser = declarant;
 	}
 	
+	public Long getBalanceId() {
+		return balanceId;
+	}
+	
+	public void setBalanceId(Long balance) {
+		this.balanceId = balance;
+	}
 }

@@ -1,6 +1,7 @@
 package br.com.mac0472.planejamentoorcamentario.entity;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneId;
 
 import br.com.mac0472.planejamentoorcamentario.dto.ExpenseCreateDto;
@@ -58,17 +59,17 @@ public class Expense {
 
 	}
 
-	public Expense(ExpenseCreateDto expenseDto, Group group, Category category, User declarant) {
+	public Expense(ExpenseCreateDto expenseDto, Group group, Category category, User declarant, Balance balance) {
 		this.name = expenseDto.getName();
 		this.observation = expenseDto.getObservation();
 		this.requestedValue = expenseDto.getRequestedValue();
 		this.provisionedValue = null;
 		this.paidValue = Float.valueOf(0);
-		this.expectedPaymentDate = expenseDto.getExpectedPaymentDate();
+		this.expectedPaymentDate = expenseDto.getExpectedPaymentDate() == null ? null : LocalDate.parse(expenseDto.getExpectedPaymentDate()).atStartOfDay(ZoneId.of("GMT-3")).toInstant();;
 		this.requester = expenseDto.getRequester();
 		this.group = group;
 		this.category = category;
-		this.balance = null;
+		this.balance = balance;
 		this.declarant = declarant;
 
 		this.creationDate = Instant.now().atZone(ZoneId.of("GMT-3")).toInstant();

@@ -23,7 +23,10 @@ public class ExpenseService {
 	private CategoryRepository categoryRepository;
 	
 	@Autowired 
-	private UserRepository userRepository;
+	private UserService userService;
+	
+	@Autowired
+	private BalanceRepository balanceRepository;
 	
 	public List<Expense> getAll() {
 		return expenseRepository.findAll();
@@ -38,11 +41,15 @@ public class ExpenseService {
 		
 		Category category = categoryById.orElseThrow(() -> new RuntimeException("Categoria inexistente"));
 		
-		Optional<User> declarantById = userRepository.findById(expenseDto.getDeclarantId());
+		Optional<User> declarantByName = userService.getDeclarantByNusp(expenseDto.getDeclarantUser());
 		
-		User declarant = declarantById.orElseThrow(() -> new RuntimeException("User do declarante inexistente"));
+		User declarant = declarantByName.orElseThrow(() -> new RuntimeException("User do declarante inexistente"));
 		
-		Expense expense = new Expense(expenseDto, group, category, declarant);
+		Optional<Balance> balanceById = balanceRepository.findById(expenseDto.getBalanceId());
+		
+		Balance balance = balanceById.orElseThrow(() -> new RuntimeException("Balanço inexistente"));
+		
+		Expense expense = new Expense(expenseDto, group, category, declarant, balance);
 		
 		return expenseRepository.save(expense);
 	}

@@ -13,7 +13,7 @@ public class User {
 
     private String name;
 
-    private Integer nusp;
+    private String nusp;
 
     @ManyToOne
     @JoinColumn(name = "profile_id")
@@ -24,7 +24,7 @@ public class User {
     public User() {
     }
 
-    public User(String name, Integer nusp, Profile profile) {
+    public User(String name, String nusp, Profile profile) {
         this.name = name;
         this.nusp = nusp;
         this.profile = profile;
@@ -48,11 +48,11 @@ public class User {
         this.name = name;
     }
 
-    public Integer getNusp() {
+    public String getNusp() {
         return nusp;
     }
 
-    public void setNusp(Integer nusp) {
+    public void setNusp(String nusp) {
         this.nusp = nusp;
     }
 

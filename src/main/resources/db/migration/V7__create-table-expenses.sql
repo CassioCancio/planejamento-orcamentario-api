@@ -7,10 +7,10 @@ create table expenses (
 	"provisioned_value" float,
 	"creation_date" date not null,
 	"expected_payment_date" date,
-	"requester" varchar(255),
+	"requester" varchar(255) not null,
 	"group_id" int not null,
 	"category_id" int not null,
-	"balance_id" int,
+	"balance_id" int not null,
 	"declarant_id" int not null,
 	foreign key ("group_id")
 		references groups ("id"),
