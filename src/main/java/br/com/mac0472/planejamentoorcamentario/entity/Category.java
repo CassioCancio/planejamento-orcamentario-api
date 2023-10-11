@@ -1,5 +1,6 @@
 package br.com.mac0472.planejamentoorcamentario.entity;
 
+import br.com.mac0472.planejamentoorcamentario.dto.CategoryCreateDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +24,10 @@ public class Category {
 	}
 	public Category() {
 		
+	}
+
+	public Category(CategoryCreateDto categoryCreateDto) {
+		this.name = categoryCreateDto.getName();
 	}
 	
 	// Getters and Setters
