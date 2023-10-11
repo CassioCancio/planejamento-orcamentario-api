@@ -3,7 +3,6 @@ package br.com.mac0472.planejamentoorcamentario.controller;
 import java.util.List;
 
 import br.com.mac0472.planejamentoorcamentario.exceptions.GroupNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import br.com.mac0472.planejamentoorcamentario.entity.Group;
@@ -14,9 +13,12 @@ import br.com.mac0472.planejamentoorcamentario.repository.GroupRepository;
 @RequestMapping("/group")
 public class GroupController {
 
-	@Autowired
-	private GroupRepository repository;
-	
+	private final GroupRepository repository;
+
+	public GroupController(GroupRepository repository) {
+		this.repository = repository;
+	}
+
 	@GetMapping("/getAll")
 	public List<Group>  getAllGroups() {
 		return repository.findAll();

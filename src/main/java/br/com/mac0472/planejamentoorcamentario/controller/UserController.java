@@ -50,7 +50,7 @@ public class UserController {
                 });
     }
 
-    @DeleteMapping("/id")
+    @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id) {
         repository.deleteById(id);
     }
