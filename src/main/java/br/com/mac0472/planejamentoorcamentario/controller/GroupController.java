@@ -2,11 +2,9 @@ package br.com.mac0472.planejamentoorcamentario.controller;
 
 import java.util.List;
 
+import br.com.mac0472.planejamentoorcamentario.exceptions.GroupNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.mac0472.planejamentoorcamentario.entity.Group;
 import br.com.mac0472.planejamentoorcamentario.repository.GroupRepository;
@@ -23,5 +21,31 @@ public class GroupController {
 	public List<Group>  getAllGroups() {
 		return repository.findAll();
 	}
+
+	@PostMapping()
+	public Group newGroup(@RequestBody Group newGroup) {return repository.save(newGroup);}
+
+	@GetMapping("/{id}")
+	public Group one(@PathVariable Long id) {
+		return repository.findById(id)
+				.orElseThrow(() -> new GroupNotFoundException(id));
+	}
+
+	@PutMapping("/{id}")
+	public Group replaceGroup(@RequestBody Group newGroup, @PathVariable Long id) {
+		return repository.findById(id)
+				.map(group -> {
+					group.setName(newGroup.getName());
+					group.setNumber(newGroup.getNumber());
+					return repository.save(group);
+				})
+				.orElseGet(() -> {
+					newGroup.setId(id);
+					return repository.save(newGroup);
+				});
+	}
+
+	@DeleteMapping("/{id}")
+	public void deleteGroup(@PathVariable Long id) { repository.deleteById(id); }
 
 }
