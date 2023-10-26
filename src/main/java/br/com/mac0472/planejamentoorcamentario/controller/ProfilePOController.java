@@ -12,7 +12,7 @@ import br.com.mac0472.planejamentoorcamentario.repository.ProfileRepository;
 
 @RestController
 @RequestMapping("/profile")
-public class ProfileController {
+public class ProfilePOController {
 
 	@Autowired
 	private ProfileRepository repository;
