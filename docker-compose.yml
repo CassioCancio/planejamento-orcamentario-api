@@ -20,4 +20,15 @@ services:
     image: adminer
     restart: always
     ports:
-      - "8080:8080"
+      - "8081:8080"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: my-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: your@email.com
+      PGADMIN_DEFAULT_PASSWORD: yourpassword
+    ports:
+      - "8082:80"
+    volumes:
+      - ./pgadmin-data:/var/lib/pgadmin
