@@ -18,4 +18,15 @@ public class Profile {
 
     @Enumerated(EnumType.STRING)
     private ProfileType type;
+
+    public Profile(Long id, ProfileType type) {
+        this.id = id;
+        this.type = type;
+    }
+
+    public Profile() {}
+
+    public Profile(ProfileType type) {
+        this.type = type;
+    }
 }
