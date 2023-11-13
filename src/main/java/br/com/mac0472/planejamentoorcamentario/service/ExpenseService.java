@@ -34,19 +34,15 @@ public class ExpenseService {
 	
 	public Expense create(ExpenseCreateDto expenseDto) throws RuntimeException {
 		Optional<Group> groupById = groupRepository.findById(expenseDto.getGroupId());
-		
 		Group group = groupById.orElseThrow(() -> new RuntimeException("Grupo inexistente"));
 		
 		Optional<Category> categoryById = categoryRepository.findById(expenseDto.getCategoryId());
-		
 		Category category = categoryById.orElseThrow(() -> new RuntimeException("Categoria inexistente"));
 		
 		Optional<User> declarantByName = userService.getDeclarantByNusp(expenseDto.getDeclarantUser());
-		
 		User declarant = declarantByName.orElseThrow(() -> new RuntimeException("User do declarante inexistente"));
 		
 		Optional<Balance> balanceById = balanceRepository.findById(expenseDto.getBalanceId());
-		
 		Balance balance = balanceById.orElseThrow(() -> new RuntimeException("Balanço inexistente"));
 		
 		Expense expense = new Expense(expenseDto, group, category, declarant, balance);

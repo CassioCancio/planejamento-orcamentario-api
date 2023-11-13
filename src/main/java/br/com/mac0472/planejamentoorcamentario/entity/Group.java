@@ -1,13 +1,18 @@
 package br.com.mac0472.planejamentoorcamentario.entity;
 
+import br.com.mac0472.planejamentoorcamentario.dto.GroupDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="groups", schema="planejamento_orcamentario")
+@Data
+@NoArgsConstructor
 public class Group {
 
 	@Id
@@ -18,41 +23,9 @@ public class Group {
 	
 	private Long number;
 
-	// Constructors
-	
-	public Group(Long id, String name, Long number) {
-		this.id = id;
-		this.name = name;
-		this.number = number;
-	}
-	
-	public Group() {
-		
-	}
-
-	// Getters and Setters
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Long getNumber() {
-		return number;
-	}
-
-	public void setNumber(Long number) {
-		this.number = number;
+	public Group(GroupDto data) {
+		name = data.getName();
+		number = data.getNumber();
 	}
 	
 }
