@@ -1,7 +1,9 @@
 package br.com.mac0472.planejamentoorcamentario.entity;
 
 import java.time.Instant;
+import java.time.ZoneId;
 
+import br.com.mac0472.planejamentoorcamentario.dto.IncomeCreateDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,15 +20,13 @@ public class Income {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String description;
+	private String name;
 	
-	private Long value;
+	private String observation;
+	
+	private Float value;
 
 	private Instant creationDate;
-
-	private Instant incomeDate;
-
-	private String process;
 
 	@ManyToOne
 	@JoinColumn(name = "group_id")
@@ -35,80 +35,89 @@ public class Income {
 	@ManyToOne
 	@JoinColumn(name = "balance_id")
 	private Balance balance;
-	
-	@ManyToOne
-	@JoinColumn(name = "unit_id")
-	private Unit unit;
 
+	@ManyToOne
+	@JoinColumn(name = "declarant_id")
+	private User declarant;
+	
 	// Constructors
-	public Income(Long id, String description, Long value, Instant creationDate, Instant incomeDate, String process, Group groupId, Balance balanceId, Unit unitId) {
-		this.id = id;
-		this.description = description;
-		this.value = value;
-		this.creationDate = creationDate;
-		this.incomeDate = incomeDate;
-		this.process = process;
-		this.group = groupId;
-		this.balance = balanceId;
-		this.unit =  unitId;
-	}
+	
 	public Income() {
 		
 	}
 	
-	// Getters and Setters
+	public Income(IncomeCreateDto incomeDto, Group group, User declarant, Balance balance) {
+		this.name = incomeDto.getName();
+		this.observation = incomeDto.getObservation();
+		this.value = incomeDto.getValue();
+		this.balance = balance;
+		this.declarant = declarant;
+		this.group = group;
+		
+		this.creationDate = Instant.now().atZone(ZoneId.of("GMT-3")).toInstant();
+	}
+	
+	// Getters and Setters 
+	
 	public Long getId() {
 		return id;
 	}
-	public void setId(Long id) {
-		this.id = id;
+
+	public String getName() {
+		return name;
 	}
-	public String getDescription() {
-		return description;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+
+	public String getObservation() {
+		return observation;
 	}
-	public Long getValue() {
+
+	public void setObservation(String observation) {
+		this.observation = observation;
+	}
+
+	public Float getValue() {
 		return value;
 	}
-	public void setValue(Long value) {
+
+	public void setValue(Float value) {
 		this.value = value;
 	}
+
 	public Instant getCreationDate() {
 		return creationDate;
 	}
+
 	public void setCreationDate(Instant creationDate) {
 		this.creationDate = creationDate;
 	}
-	public Instant getIncomeDate() {
-		return incomeDate;
-	}
-	public void setIncomeDate(Instant incomeDate) {
-		this.incomeDate = incomeDate;
-	}
-	public String getProcess() {
-		return process;
-	}
-	public void setProcess(String process) {
-		this.process = process;
-	}
+
 	public Group getGroup() {
 		return group;
 	}
+
 	public void setGroup(Group group) {
 		this.group = group;
 	}
+
 	public Balance getBalance() {
 		return balance;
 	}
+
 	public void setBalance(Balance balance) {
 		this.balance = balance;
 	}
-	public Unit getUnit() {
-		return unit;
+
+	public User getDeclarant() {
+		return declarant;
 	}
-	public void setUnit(Unit unit) {
-		this.unit = unit;
+
+	public void setDeclarant(User declarant) {
+		this.declarant = declarant;
 	}
+	
+	
 }
