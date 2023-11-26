@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.mac0472.planejamentoorcamentario.dto.IncomeCreateDto;
@@ -25,8 +26,11 @@ public class IncomeController {
 	private IncomeService incomeService;
 	
 	@GetMapping("/byBalance/{year}")
-	public List<Income> getAllIncomesByBalance(@PathVariable Long year) {
-		return incomeService.getAllByBalance(year);
+	public List<Income> getAllIncomesByBalance(
+			@PathVariable Long year,
+			@RequestParam(required = false) Long group,
+	        @RequestParam(required = false) String name) {
+		return incomeService.getAllByBalanceAndFilter(year, group, name);
 	}
 	
 	@GetMapping("/{incomeId}")

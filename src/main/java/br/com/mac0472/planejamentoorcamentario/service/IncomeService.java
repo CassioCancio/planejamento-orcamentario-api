@@ -29,10 +29,10 @@ public class IncomeService {
 	@Autowired
 	private GroupService groupService;
 	
-	public List<Income> getAllByBalance(Long year) throws RuntimeException {
+	public List<Income> getAllByBalanceAndFilter(Long year, Long groupId, String filter) throws RuntimeException {
 		Balance balance = balanceService.getBalanceByYear(year);
 		
-		return incomeRepository.findByBalance(balance);
+		return incomeRepository.findByBalanceAndFilter(balance, groupId, filter != null ? filter : "");
 	}
 	
 	public Income getById(Long id) throws RuntimeException {
