@@ -35,10 +35,10 @@ public class ExpenseService {
 		return expenseById.orElseThrow(() -> new RuntimeException("Despesa Inexistente"));
 	}
 	
-	public List<Expense> getAllByBalance(Long year) throws RuntimeException {
+	public List<Expense> getAllByBalanceAndFilter(Long year, Long groupId, Long categoryId, String filter) throws RuntimeException {
 		Balance balance = balanceService.getBalanceByYear(year);
 		
-		return expenseRepository.findByBalance(balance);
+		return expenseRepository.findByBalanceAndFilter(balance, groupId, categoryId, filter != null ? filter : "");
 	}
 	
 	@Transactional

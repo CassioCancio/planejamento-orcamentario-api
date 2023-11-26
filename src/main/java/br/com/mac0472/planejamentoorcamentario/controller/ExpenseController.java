@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.mac0472.planejamentoorcamentario.dto.ExpenseCreateDto;
@@ -25,8 +26,12 @@ public class ExpenseController {
 	private ExpenseService expenseService;
 	
 	@GetMapping("/byBalance/{year}")
-	public List<Expense> getAllExpensesByBalnce(@PathVariable Long year){
-		return expenseService.getAllByBalance(year);
+	public List<Expense> getAllExpensesByBalnce(
+			@PathVariable Long year,
+			@RequestParam(required = false) Long group,
+	        @RequestParam(required = false) Long category,
+	        @RequestParam(required = false) String name) {
+		return expenseService.getAllByBalanceAndFilter(year, group, category, name);
 	}
 	
 	@GetMapping("/{expenseId}")
