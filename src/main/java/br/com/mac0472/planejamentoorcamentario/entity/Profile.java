@@ -26,6 +26,10 @@ public class Profile {
     @Enumerated(EnumType.STRING)
     private ProfileType type;
 
+    public Profile(ProfileType type) {
+        this.type = type;
+    }
+
     public Profile(ProfileDto data) {
         type = data.getType();
     }
