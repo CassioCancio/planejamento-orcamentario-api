@@ -3,8 +3,6 @@ package br.com.mac0472.planejamentoorcamentario.dto;
 import br.com.mac0472.planejamentoorcamentario.enums.ProfileType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;

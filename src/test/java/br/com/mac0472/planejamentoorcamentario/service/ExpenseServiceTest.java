@@ -5,7 +5,6 @@ import br.com.mac0472.planejamentoorcamentario.entity.*;
 import br.com.mac0472.planejamentoorcamentario.enums.ProfileType;
 import br.com.mac0472.planejamentoorcamentario.repository.*;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,9 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -56,7 +53,7 @@ class ExpenseServiceTest {
 
     @BeforeAll
     void setup() {
-        MockitoAnnotations.initMocks(this);
+        MockitoAnnotations.openMocks(this);
         // We need some entities
         // User
         Profile userProfile = new Profile(ProfileType.DECLARANT);

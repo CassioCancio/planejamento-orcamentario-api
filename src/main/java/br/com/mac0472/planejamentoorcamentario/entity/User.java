@@ -2,11 +2,8 @@ package br.com.mac0472.planejamentoorcamentario.entity;
 
 import br.com.mac0472.planejamentoorcamentario.dto.UserDto;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Objects;
 
 @Entity(name = "User")
 @Table(name = "users", schema = "planejamento_orcamentario")
