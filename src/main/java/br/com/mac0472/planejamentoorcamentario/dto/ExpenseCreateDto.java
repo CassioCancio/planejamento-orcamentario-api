@@ -23,7 +23,7 @@ public class ExpenseCreateDto {
 	
 	private String declarantUser;
 	
-	private Long balanceId;
+	private Long balanceYear;
 	
 	// Constructors
 	
@@ -97,11 +97,11 @@ public class ExpenseCreateDto {
 		this.declarantUser = declarant;
 	}
 	
-	public Long getBalanceId() {
-		return balanceId;
+	public Long getBalanceYear() {
+		return balanceYear;
 	}
 	
-	public void setBalanceId(Long balance) {
-		this.balanceId = balance;
+	public void setBalanceYear(Long balance) {
+		this.balanceYear = balance;
 	}
 }

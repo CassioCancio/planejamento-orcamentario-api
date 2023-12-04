@@ -49,7 +49,7 @@ public class ExpenseService {
 		
 		User declarant = userService.getDeclarantByNusp(expenseDto.getDeclarantUser());
 		
-		Balance balance = balanceService.getBalanceById(expenseDto.getBalanceId());
+		Balance balance = balanceService.getBalanceByYear(expenseDto.getBalanceYear());
 		
 		Expense expense = new Expense(expenseDto, group, category, declarant, balance);
 		

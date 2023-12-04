@@ -47,7 +47,7 @@ public class IncomeService {
 
 		User declarant = userService.getDeclarantByNusp(incomeDto.getDeclarantUser());
 		
-		Balance balance = balanceService.getBalanceById(incomeDto.getBalanceId());
+		Balance balance = balanceService.getBalanceByYear(incomeDto.getBalanceYear());
 		
 		Income income = new Income(incomeDto, group, declarant, balance);
 		

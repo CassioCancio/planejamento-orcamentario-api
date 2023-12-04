@@ -15,7 +15,7 @@ public class IncomeCreateDto {
 	
 	private String declarantUser;
 
-	private Long balanceId;
+	private Long balanceYear;
 	
 	private Long groupId;
 	
@@ -59,12 +59,12 @@ public class IncomeCreateDto {
 		this.declarantUser = declarantUser;
 	}
 
-	public Long getBalanceId() {
-		return balanceId;
+	public Long getBalanceYear() {
+		return balanceYear;
 	}
 
-	public void setBalanceId(Long balanceId) {
-		this.balanceId = balanceId;
+	public void setBalanceYear(Long balanceId) {
+		this.balanceYear = balanceId;
 	}
 
 	public Long getGroupId() {
