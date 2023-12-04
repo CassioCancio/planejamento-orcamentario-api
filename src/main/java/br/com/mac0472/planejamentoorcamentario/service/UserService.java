@@ -14,7 +14,8 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	public Optional<User> getDeclarantByNusp(String nusp){
-		return userRepository.findByNusp(nusp);
+	public User getDeclarantByNusp(String nusp) throws RuntimeException {
+		Optional<User> userByNusp = userRepository.findByNusp(nusp);
+		return userByNusp.orElseThrow(() -> new RuntimeException("User do declarante inexistente"));
 	}
 }

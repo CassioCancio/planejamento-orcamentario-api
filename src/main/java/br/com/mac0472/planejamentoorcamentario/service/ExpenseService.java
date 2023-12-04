@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.mac0472.planejamentoorcamentario.dto.ExpenseCreateDto;
 import br.com.mac0472.planejamentoorcamentario.entity.*;
@@ -17,36 +18,46 @@ public class ExpenseService {
 	private ExpenseRepository expenseRepository;
 	
 	@Autowired
-	private GroupRepository groupRepository;
+	private GroupService groupService;
 	
 	@Autowired 
-	private CategoryRepository categoryRepository;
+	private CategoryService categoryService;
 	
 	@Autowired 
 	private UserService userService;
 	
 	@Autowired
-	private BalanceRepository balanceRepository;
+	private BalanceService balanceService;
 	
-	public List<Expense> getAll() {
-		return expenseRepository.findAll();
+	public Expense getById(Long id) throws RuntimeException {
+		Optional<Expense> expenseById = expenseRepository.findById(id);
+		
+		return expenseById.orElseThrow(() -> new RuntimeException("Despesa Inexistente"));
 	}
 	
+	public List<Expense> getAllByBalanceAndFilter(Long year, Long groupId, Long categoryId, String filter) throws RuntimeException {
+		Balance balance = balanceService.getBalanceByYear(year);
+		
+		return expenseRepository.findByBalanceAndFilter(balance, groupId, categoryId, filter != null ? filter : "");
+	}
+	
+	@Transactional
 	public Expense create(ExpenseCreateDto expenseDto) throws RuntimeException {
-		Optional<Group> groupById = groupRepository.findById(expenseDto.getGroupId());
-		Group group = groupById.orElseThrow(() -> new RuntimeException("Grupo inexistente"));
+		Group group = groupService.getGroupById(expenseDto.getGroupId());
 		
-		Optional<Category> categoryById = categoryRepository.findById(expenseDto.getCategoryId());
-		Category category = categoryById.orElseThrow(() -> new RuntimeException("Categoria inexistente"));
+		Category category = categoryService.getCategoryById(expenseDto.getCategoryId());
 		
-		Optional<User> declarantByName = userService.getDeclarantByNusp(expenseDto.getDeclarantUser());
-		User declarant = declarantByName.orElseThrow(() -> new RuntimeException("User do declarante inexistente"));
+		User declarant = userService.getDeclarantByNusp(expenseDto.getDeclarantUser());
 		
-		Optional<Balance> balanceById = balanceRepository.findById(expenseDto.getBalanceId());
-		Balance balance = balanceById.orElseThrow(() -> new RuntimeException("Balanço inexistente"));
+		Balance balance = balanceService.getBalanceById(expenseDto.getBalanceId());
 		
 		Expense expense = new Expense(expenseDto, group, category, declarant, balance);
 		
+		return expenseRepository.save(expense);
+	}
+	
+	@Transactional
+	public Expense update(Expense expense) throws RuntimeException {
 		return expenseRepository.save(expense);
 	}
 }
