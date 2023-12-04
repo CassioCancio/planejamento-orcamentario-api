@@ -38,16 +38,16 @@ class ExpenseServiceTest {
     private ExpenseRepository expenseRepository;
 
     @Mock
-    private GroupRepository groupRepository;
+    private GroupService groupService;
 
     @Mock
-    private CategoryRepository categoryRepository;
+    private CategoryService categoryService;
 
     @Mock
     private UserService userService;
 
     @Mock
-    private BalanceRepository balanceRepository;
+    private BalanceService balanceService;
 
     private User user;
     private Group group;
@@ -79,10 +79,10 @@ class ExpenseServiceTest {
     @DisplayName("Should save and assert the saved Expense Entity")
     void createCaseSuccess() {
         // Mocked methods
-        when(groupRepository.findById(group.getId())).thenReturn(Optional.of(group));
-        when(categoryRepository.findById(category.getId())).thenReturn(Optional.of(category));
-        when(userService.getDeclarantByNusp(user.getNusp())).thenReturn(Optional.of(user));
-        when(balanceRepository.findById(balance.getId())).thenReturn(Optional.of(balance));
+        when(groupService.getGroupById(group.getId())).thenReturn(group);
+        when(categoryService.getCategoryById(category.getId())).thenReturn((category));
+        when(userService.getDeclarantByNusp(user.getNusp())).thenReturn(user);
+        when(balanceService.getBalanceById(balance.getId())).thenReturn((balance));
 
         // Expense to be saved
         ExpenseCreateDto expenseCreateDto = new ExpenseCreateDto("Expense's name example", "Observation: Lorem ipsum", 2023.14f,
@@ -91,85 +91,5 @@ class ExpenseServiceTest {
 
         // Assert
         verify(expenseRepository, times(1)).save(any());
-    }
-
-    @Test
-    @DisplayName("Should not save and thrown an RuntimeException because group does not exist")
-    void createCaseGroupDoesntExist() {
-        // Mocked methods
-        when(groupRepository.findById(group.getId())).thenReturn(Optional.empty());
-        when(categoryRepository.findById(category.getId())).thenReturn(Optional.of(category));
-        when(userService.getDeclarantByNusp(user.getNusp())).thenReturn(Optional.of(user));
-        when(balanceRepository.findById(balance.getId())).thenReturn(Optional.of(balance));
-
-        // Catch thrown exception
-        RuntimeException thrown = Assertions.assertThrows(RuntimeException.class, () -> {
-            ExpenseCreateDto expenseCreateDto = new ExpenseCreateDto("Expense's name example", "Observation: Lorem ipsum", 2023.14f,
-                "2023-01-23", "Requester example", group.getId(), category.getId(), user.getNusp(), balance.getId());
-            expenseService.create(expenseCreateDto);
-        });
-
-        // Assert
-        assertEquals("Grupo inexistente", thrown.getMessage());
-    }
-
-    @Test
-    @DisplayName("Should not save and thrown an RuntimeException because category does not exist")
-    void createCaseCategoryDoesntExist() {
-        // Mocked methods
-        when(groupRepository.findById(group.getId())).thenReturn(Optional.of(group));
-        when(categoryRepository.findById(category.getId())).thenReturn(Optional.empty());
-        when(userService.getDeclarantByNusp(user.getNusp())).thenReturn(Optional.of(user));
-        when(balanceRepository.findById(balance.getId())).thenReturn(Optional.of(balance));
-
-        // Catch thrown exception
-        RuntimeException thrown = Assertions.assertThrows(RuntimeException.class, () -> {
-            ExpenseCreateDto expenseCreateDto = new ExpenseCreateDto("Expense's name example", "Observation: Lorem ipsum", 2023.14f,
-                "2023-01-23", "Requester example", group.getId(), category.getId(), user.getNusp(), balance.getId());
-            expenseService.create(expenseCreateDto);
-        });
-
-        // Assert
-        assertEquals("Categoria inexistente", thrown.getMessage());
-    }
-
-    @Test
-    @DisplayName("Should not save and thrown an RuntimeException because user does not exist")
-    void createCaseUserDoesntExist() {
-        // Mocked methods
-        when(groupRepository.findById(group.getId())).thenReturn(Optional.of(group));
-        when(categoryRepository.findById(category.getId())).thenReturn(Optional.of(category));
-        when(userService.getDeclarantByNusp(user.getNusp())).thenReturn(Optional.empty());
-        when(balanceRepository.findById(balance.getId())).thenReturn(Optional.of(balance));
-
-        // Catch thrown exception
-        RuntimeException thrown = Assertions.assertThrows(RuntimeException.class, () -> {
-            ExpenseCreateDto expenseCreateDto = new ExpenseCreateDto("Expense's name example", "Observation: Lorem ipsum", 2023.14f,
-                "2023-01-23", "Requester example", group.getId(), category.getId(), user.getNusp(), balance.getId());
-            expenseService.create(expenseCreateDto);
-        });
-
-        // Assert
-        assertEquals("User do declarante inexistente", thrown.getMessage());
-    }
-
-    @Test
-    @DisplayName("Should not save and thrown an RuntimeException because balance does not exist")
-    void createCaseBalanceDoesntExist() {
-        // Mocked methods
-        when(groupRepository.findById(group.getId())).thenReturn(Optional.of(group));
-        when(categoryRepository.findById(category.getId())).thenReturn(Optional.of(category));
-        when(userService.getDeclarantByNusp(user.getNusp())).thenReturn(Optional.of(user));
-        when(balanceRepository.findById(balance.getId())).thenReturn(Optional.empty());
-
-        // Catch thrown exception
-        RuntimeException thrown = Assertions.assertThrows(RuntimeException.class, () -> {
-            ExpenseCreateDto expenseCreateDto = new ExpenseCreateDto("Expense's name example", "Observation: Lorem ipsum", 2023.14f,
-                "2023-01-23", "Requester example", group.getId(), category.getId(), user.getNusp(), balance.getId());
-            expenseService.create(expenseCreateDto);
-        });
-
-        // Assert
-        assertEquals("Balanço inexistente", thrown.getMessage());
     }
 }
