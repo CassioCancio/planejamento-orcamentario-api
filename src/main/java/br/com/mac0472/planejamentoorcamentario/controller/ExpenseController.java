@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.mac0472.planejamentoorcamentario.dto.ExpenseCreateDto;
 import br.com.mac0472.planejamentoorcamentario.entity.Expense;
+import br.com.mac0472.planejamentoorcamentario.service.BalanceService;
 import br.com.mac0472.planejamentoorcamentario.service.ExpenseService;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -27,10 +28,10 @@ public class ExpenseController {
 	
 	@GetMapping("/byBalance/{year}")
 	public List<Expense> getAllExpensesByBalnce(
-			@PathVariable Long year,
-			@RequestParam(required = false) Long group,
-	        @RequestParam(required = false) Long category,
-	        @RequestParam(required = false) String name) {
+		@PathVariable Long year,
+		@RequestParam(required = false) Long group,
+	    @RequestParam(required = false) Long category,
+	    @RequestParam(required = false) String name) {
 		return expenseService.getAllByBalanceAndFilter(year, group, category, name);
 	}
 	

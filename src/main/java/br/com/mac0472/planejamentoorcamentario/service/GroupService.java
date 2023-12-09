@@ -1,5 +1,6 @@
 package br.com.mac0472.planejamentoorcamentario.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +19,9 @@ public class GroupService {
 		Optional<Group> groupById = groupRepository.findById(groupId);
 		
 		return groupById.orElseThrow(() -> new RuntimeException("Grupo inexistente"));
+	}
+	
+	public List<Group> getAllGroups() {
+		return groupRepository.findAll();
 	}
 }
