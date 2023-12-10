@@ -16,7 +16,7 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
 	
 	List<Expense> findByBalance(Balance balanco);
 	
-	@Query("SELECT e FROM Expense e WHERE e.balance = :balance AND (:groupId IS NULL OR e.group.id = :groupId) AND (:categoryId IS NULL OR e.category.id = :categoryId) AND LOWER(e.name) LIKE LOWER(CONCAT('%', :filter, '%'))")
+	@Query("SELECT e FROM Expense e WHERE e.balance = :balance AND (:groupId IS NULL OR e.group.id = :groupId) AND (:categoryId IS NULL OR e.category.id = :categoryId) AND LOWER(e.name) LIKE LOWER(CONCAT('%', :filter, '%')) ORDER BY e.group.number, e.category.id")
     List<Expense> findByBalanceAndFilter(
             @Param("balance") Balance balance,
             @Param("groupId") Long group,
@@ -24,4 +24,5 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
             @Param("filter") String filter
     );
 	
+	void deleteById(Long expenseId);
 }

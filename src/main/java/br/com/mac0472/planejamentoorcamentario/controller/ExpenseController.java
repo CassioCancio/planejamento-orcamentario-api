@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.mac0472.planejamentoorcamentario.dto.ExpenseCreateDto;
 import br.com.mac0472.planejamentoorcamentario.entity.Expense;
-import br.com.mac0472.planejamentoorcamentario.service.BalanceService;
 import br.com.mac0472.planejamentoorcamentario.service.ExpenseService;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -48,5 +48,10 @@ public class ExpenseController {
 	@PutMapping(consumes = "application/json", produces = "application/json")
 	public Expense updateExpense(@RequestBody Expense expense) {
 		return expenseService.update(expense);
+	}
+	
+	@DeleteMapping("/{expenseId}")
+	public void deleteExpense(@PathVariable Long expenseId) {
+		expenseService.delete(expenseId);
 	}
 }

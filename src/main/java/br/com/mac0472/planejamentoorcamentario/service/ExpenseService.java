@@ -60,4 +60,9 @@ public class ExpenseService {
 	public Expense update(Expense expense) throws RuntimeException {
 		return expenseRepository.save(expense);
 	}
+	
+	@Transactional
+	public void delete(Long expenseId) {
+		expenseRepository.deleteById(expenseId);
+	}
 }

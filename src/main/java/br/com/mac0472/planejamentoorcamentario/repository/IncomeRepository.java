@@ -13,10 +13,12 @@ public interface IncomeRepository extends JpaRepository<Income, Long>{
 	
 	List<Income> findByBalance(Balance balance);
 	
-	@Query("SELECT i FROM Income i WHERE i.balance = :balance AND (:groupId IS NULL OR i.group.id = :groupId) AND LOWER(i.name) LIKE LOWER(CONCAT('%', :filter, '%'))")
+	@Query("SELECT i FROM Income i WHERE i.balance = :balance AND (:groupId IS NULL OR i.group.id = :groupId) AND LOWER(i.name) LIKE LOWER(CONCAT('%', :filter, '%')) ORDER BY i.group.number")
     List<Income> findByBalanceAndFilter(
             @Param("balance") Balance balance,
             @Param("groupId") Long group,
             @Param("filter") String filter
     );
+	
+	void deleteById(Long incomeId);
 }

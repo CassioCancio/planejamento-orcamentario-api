@@ -58,4 +58,9 @@ public class IncomeService {
 	public Income update(Income income) throws RuntimeException {
 		return incomeRepository.save(income);
 	}
+	
+	@Transactional
+	public void delete(Long incomeId) {
+		incomeRepository.deleteById(incomeId);
+	}
 }
