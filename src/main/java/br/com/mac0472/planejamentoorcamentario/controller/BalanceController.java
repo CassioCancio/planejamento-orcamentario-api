@@ -2,12 +2,10 @@ package br.com.mac0472.planejamentoorcamentario.controller;
 
 import java.util.List;
 
+import br.com.mac0472.planejamentoorcamentario.dto.BalanceCreateDto;
+import br.com.mac0472.planejamentoorcamentario.entity.Balance;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.mac0472.planejamentoorcamentario.dto.GroupReportDto;
 import br.com.mac0472.planejamentoorcamentario.dto.ReportDto;
@@ -35,5 +33,10 @@ public class BalanceController {
 	@GetMapping("/{year}/getAllGroups")
 	public List<GroupReportDto> getBalanceReportByGroup(@PathVariable Long year) {
 		return balanceService.getBalanceReportByGroup(year);
+	}
+
+	@PostMapping(consumes = "application/json", produces = "application/json")
+	public Balance createBalance(@RequestBody BalanceCreateDto balanceCreateDto) {
+		return balanceService.create(balanceCreateDto);
 	}
 }

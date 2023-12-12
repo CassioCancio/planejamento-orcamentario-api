@@ -2,6 +2,7 @@ package br.com.mac0472.planejamentoorcamentario.entity;
 
 import java.time.Instant;
 
+import br.com.mac0472.planejamentoorcamentario.dto.BalanceCreateDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -57,5 +58,11 @@ public class Balance {
 	}
 	public void setYear(Long year) {
 		this.year = year;
+	}
+
+	public Balance(BalanceCreateDto balanceCreateDto) {
+		this.startDate = balanceCreateDto.getStartDate();
+		this.endDate = balanceCreateDto.getEndDate();
+		this.year = balanceCreateDto.getYear();
 	}
 }
