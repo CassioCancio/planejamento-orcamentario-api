@@ -2,7 +2,7 @@
 
 ## Installation & Execution
 
-```
+```bash
 git clone https://github.com/mac0427/planejamento-orcamentario-api.git
 cd planejamento-orcamentario-api
 cp src/main/resources/application.properties-default src/main/resources/application.properties
@@ -15,7 +15,7 @@ idea.sh
 ```
 
 ## Run tests
-```
+```bash
 cd planejamento-orcamentario-api
 cp src/test/resources/application-test.properties-default src/main/resources/application-test.properties
 # edit src/main/resources/application-test.properties with your favorite editor
