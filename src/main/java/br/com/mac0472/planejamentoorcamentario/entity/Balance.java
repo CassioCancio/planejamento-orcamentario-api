@@ -2,6 +2,7 @@ package br.com.mac0472.planejamentoorcamentario.entity;
 
 import java.time.Instant;
 
+import br.com.mac0472.planejamentoorcamentario.dto.BalanceCreateDto;
 import br.com.mac0472.planejamentoorcamentario.dto.BalanceDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,5 +32,11 @@ public class Balance {
 		startDate = data.getStartDate();
 		endDate = data.getEndDate();
 		year = data.getYear();
+	}
+
+	public Balance(BalanceCreateDto balanceCreateDto) {
+		this.startDate = balanceCreateDto.getStartDate();
+		this.endDate = balanceCreateDto.getEndDate();
+		this.year = balanceCreateDto.getYear();
 	}
 }
