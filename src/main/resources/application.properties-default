@@ -1,0 +1,17 @@
+# Database Access Configurations
+# Change <> with database information
+spring.datasource.url=jdbc:postgresql://localhost:5432/<database-name>
+spring.datasource.username=<username>
+spring.datasource.password=<password>
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+# Setting Jpa default schema to be mandala
+spring.jpa.properties.hibernate.default_schema=planejamento_orcamentario
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.properties.hibernate.format_sql=true
+
+# Flyway Configuration
+# Setting Migrations default schema to be mandala
+spring.flyway.defaultSchema=planejamento_orcamentario
+#Setting the foulder name where the migrations are
+spring.flyway.locations=classpath:db/migration

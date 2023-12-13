@@ -8,9 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import br.com.mac0472.planejamentoorcamentario.entity.Balance;
-import br.com.mac0472.planejamentoorcamentario.entity.Category;
 import br.com.mac0472.planejamentoorcamentario.entity.Expense;
-import br.com.mac0472.planejamentoorcamentario.entity.Group;
 
 public interface ExpenseRepository extends JpaRepository<Expense, Long> {
 	
