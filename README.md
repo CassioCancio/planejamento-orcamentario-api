@@ -11,7 +11,7 @@ planejamento-orcamentario-api is a `Spring` API for the planejamento-orcamentari
 The tables defined in `src/main/resources/db/migration` are inspired by a `DrawSQL` model, but not fully implemented.
 
 The model can be seen below:
-TODO: include image
+![DrawSQL model](./drawSQL-orcament-database-export-2023-12-18.png)
 
 ### Docker Compose
 
@@ -44,6 +44,7 @@ idea.sh
 ```
 
 ### Run tests
+
 ```bash
 cd planejamento-orcamentario-api
 cp src/test/resources/application-test.properties-default src/main/resources/application-test.properties
@@ -55,3 +56,7 @@ gedit src/main/resources/application-test.properties
 # IntelliJ example
 idea.sh
 ```
+
+### Postman API methods
+
+The file LabXP.postman_collection.json can be imported to postman to see all API methods implemented.
