@@ -6,29 +6,6 @@ planejamento-orcamentario-api is a `Spring` API for the planejamento-orcamentari
 
 ## Running information
 
-### DrawSQL model
-
-The tables defined in `src/main/resources/db/migration` are inspired by a `DrawSQL` model, but not fully implemented.
-
-The model can be seen below:
-![DrawSQL model](./drawSQL-orcament-database-export-2023-12-18.png)
-
-### Docker Compose
-
-planejamento-orcamentario-api communicates with a `POSTGRESQL` database, that can be initiated via `Docker Compose` file.
-
-A Docker container can be started as follows:
-
-```bash
-cd planejamento-orcamentario-api
-cp .default.env .env
-## edit .env to your liking
-docker compose --env-file=.env up
-# ... run application
-# close docker container
-docker compose down
-```
-
 ### Installation & Execution
 
 ```bash
@@ -55,6 +32,29 @@ gedit src/main/resources/application-test.properties
 # open the project in your favorite IDE and run it from there
 # IntelliJ example
 idea.sh
+```
+
+### DrawSQL model
+
+The tables defined in `src/main/resources/db/migration` are inspired by a `DrawSQL` model, but not fully implemented.
+
+The model can be seen below:
+![DrawSQL model](./drawSQL-orcament-database-export-2023-12-18.png)
+
+### Docker Compose
+
+planejamento-orcamentario-api communicates with a `POSTGRESQL` database, that can be initiated via `Docker Compose` file.
+
+A Docker container can be started as follows:
+
+```bash
+cd planejamento-orcamentario-api
+cp .default.env .env
+## edit .env to your liking
+docker compose --env-file=.env up
+# ... run application
+# close docker container
+docker compose down
 ```
 
 ### Postman API methods
