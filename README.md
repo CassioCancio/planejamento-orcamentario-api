@@ -41,6 +41,8 @@ The tables defined in `src/main/resources/db/migration` are inspired by a `DrawS
 The model can be seen below:
 ![DrawSQL model](./drawSQL-orcament-database-export-2023-12-18.png)
 
+And can be found in the link: [DrawSQL](https://drawsql.app/teams/labxp/diagrams/orcament-database)
+
 ### Docker Compose
 
 planejamento-orcamentario-api communicates with a `POSTGRESQL` database, that can be initiated via `Docker Compose` file.
