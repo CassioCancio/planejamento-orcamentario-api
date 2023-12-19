@@ -2,7 +2,7 @@
 
 ## About
 
-planejamento-orcamentario-api is a `Spring` API for the planejamento-orcamentario-web application, developed as a project for the course `MAC0427 - Laboratório de Métodos Ágeis (2023)`.
+planejamento-orcamentario-api is a `Spring` API that communicates with a `PostgreSQL` database for the planejamento-orcamentario-web application, developed as a project for the course `MAC0427 - Laboratório de Métodos Ágeis (2023)`.
 
 ## Running information
 
