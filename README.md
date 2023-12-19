@@ -1,6 +1,35 @@
 # planejamento-orcamentario-api
 
-## Installation & Execution
+## About
+
+planejamento-orcamentario-api is a `Spring` API for the planejamento-orcamentario-web application, developed as a project for the course `MAC0427 - Laboratório de Métodos Ágeis (2023)`.
+
+## Running information
+
+### DrawSQL model
+
+The tables defined in `src/main/resources/db/migration` are inspired by a `DrawSQL` model, but not fully implemented.
+
+The model can be seen below:
+TODO: include image
+
+### Docker Compose
+
+planejamento-orcamentario-api communicates with a `POSTGRESQL` database, that can be initiated via `Docker Compose` file.
+
+A Docker container can be started as follows:
+
+```bash
+cd planejamento-orcamentario-api
+cp .default.env .env
+## edit .env to your liking
+docker compose --env-file=.env up
+# ... run application
+# close docker container
+docker compose down
+```
+
+### Installation & Execution
 
 ```bash
 git clone https://github.com/mac0427/planejamento-orcamentario-api.git
@@ -14,7 +43,7 @@ gedit src/main/resources/application.properties
 idea.sh
 ```
 
-## Run tests
+### Run tests
 ```bash
 cd planejamento-orcamentario-api
 cp src/test/resources/application-test.properties-default src/main/resources/application-test.properties
